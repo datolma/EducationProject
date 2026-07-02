@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="EducationProject.Core/EducationProject.Core.csproj" />
+  <Project Path="EducationProject/EducationProject.API.csproj" />
+</Solution>
