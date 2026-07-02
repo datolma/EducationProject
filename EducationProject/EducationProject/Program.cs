@@ -1,3 +1,5 @@
+using EducationProject.Core;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -26,12 +28,11 @@ app.MapControllerRoute(
 
 app.Run();
 
-using (ApplicationContext db = new ApplicationContext())
+using (ApplicationContext db = new())
 {
     // создаем два объекта User
-    Goods dress = new Goods { Name = "Платье",  = 33 };
-    User alice = new User { Name = "Alice", Age = 26 };
-
+    Good dress = new Good { Name = "Платье",  = 33 };
+ 
     // добавляем их в бд
     db.Users.Add(tom);
     db.Users.Add(alice);
