@@ -1,4 +1,5 @@
 using EducationProject.Core;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +16,11 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+builder.Services.AddDbContext<ApplicationContext>(options =>
+{
+    options.UseNpgsql("Host=localhost;Database=myDb;Username=postgres;Password=postgres");
+});
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
@@ -27,23 +33,3 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
-
-using (ApplicationContext db = new())
-{
-    // создаем два объекта User
-    Good dress = new Good { Name = "Платье",  = 33 };
- 
-    // добавляем их в бд
-    db.Users.Add(tom);
-    db.Users.Add(alice);
-    db.SaveChanges();
-    Console.WriteLine("Объекты успешно сохранены");
-
-    // получаем объекты из бд и выводим на консоль
-    var users = db.Users.ToList();
-    Console.WriteLine("Список объектов:");
-    foreach (User u in users)
-    {
-        Console.WriteLine($"{u.Id}.{u.Name} - {u.Age}");
-    }
-}

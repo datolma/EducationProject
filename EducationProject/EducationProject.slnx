@@ -1,4 +1,5 @@
 <Solution>
   <Project Path="EducationProject.Core/EducationProject.Core.csproj" />
+  <Project Path="EducationProject.Infrastructure/EducationProject.Infrastructure.csproj" Id="16d20c53-3b4b-4c2d-b82e-6643205bf1f7" />
   <Project Path="EducationProject/EducationProject.API.csproj" />
 </Solution>
