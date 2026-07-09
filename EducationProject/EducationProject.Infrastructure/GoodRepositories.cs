@@ -1,4 +1,5 @@
-﻿using EducationProject.Core;
+﻿using EducationProject.Core.Application.Absractions;
+using EducationProject.Core.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

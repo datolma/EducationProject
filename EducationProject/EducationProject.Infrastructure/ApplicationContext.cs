@@ -1,4 +1,4 @@
-﻿using EducationProject.Core;
+﻿using EducationProject.Core.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace EducationProject.Infrastructure

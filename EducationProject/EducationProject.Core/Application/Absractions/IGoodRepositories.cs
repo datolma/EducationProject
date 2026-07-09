@@ -1,4 +1,6 @@
-﻿namespace EducationProject.Core
+﻿using EducationProject.Core.Models;
+
+namespace EducationProject.Core.Application.Absractions
 {
     public interface IGoodRepositories
     {
