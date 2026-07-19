@@ -1,3 +1,5 @@
+using EducationProject.API.DTO;
+using EducationProject.API.Models;
 using EducationProject.Core.Application.Services;
 using EducationProject.Core.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -36,36 +38,37 @@ namespace EducationProject.Controllers
 
         // POST: api/goods
         [HttpPost]
-        public async Task<IActionResult> Add([FromBody] Good good)
+        public async Task<IActionResult> Add([FromBody] CreateGoodDTO goodDTO)
         {
-            try
+            var good = new Good
             {
-                var created = await _service.AddGoodAsync(good);
-                return CreatedAtAction(nameof(GetById), new { id = created.Id }, created);
-            }
-            catch (ArgumentException ex)
-            {
-                return BadRequest(ex.Message);
-            }
+                Name = goodDTO.Name,
+                Price = goodDTO.Price,
+                Description = goodDTO.Description,
+                Count = goodDTO.Count,
+                Discount = goodDTO.Discount
+            };
+
+            var created = await _service.AddGoodAsync(good);
+            return CreatedAtAction(nameof(GetById), new { id = created.Id }, created);
         }
 
         // PUT: api/goods
         [HttpPut]
-        public async Task<IActionResult> Update([FromBody] Good good)
+        public async Task<IActionResult> Update([FromBody] UpdateGoodDTO goodDTO)
         {
-            try
+            var good = new Good
             {
-                var updated = await _service.UpdateGoodAsync(good);
-                return Ok(updated);
-            }
-            catch (KeyNotFoundException ex)
-            {
-                return NotFound(ex.Message);
-            }
-            catch (ArgumentException ex)
-            {
-                return BadRequest(ex.Message);
-            }
+                Id = goodDTO.Id,
+                Name = goodDTO.Name,
+                Price = goodDTO.Price,
+                Description = goodDTO.Description,
+                Count = goodDTO.Count,
+                Discount = goodDTO.Discount
+            };
+
+            var updated = await _service.UpdateGoodAsync(good);
+            return Ok(updated);
         }
 
         // DELETE: api/goods/{id}
@@ -93,15 +96,9 @@ namespace EducationProject.Controllers
         [HttpGet("{id}/finalprice")]
         public async Task<IActionResult> GetFinalPrice(int id)
         {
-            try
-            {
-                var finalPrice = await _service.GetFinalPriceAsync(id);
-                return Ok(new { goodId = id, finalPrice });
-            }
-            catch (KeyNotFoundException ex)
-            {
-                return NotFound(ex.Message);
-            }
+            
+            var finalPrice = await _service.GetFinalPriceAsync(id);
+            return Ok(new { goodId = id, finalPrice });
         }
     }
 }

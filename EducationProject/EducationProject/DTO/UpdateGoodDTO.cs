@@ -2,6 +2,7 @@
 {
     public class UpdateGoodDTO
     {
+        public int Id { get; set; }
         public required string Name { get; set; }
         public decimal Price { get; set; }
         public decimal FinalPrice { get; set; }
