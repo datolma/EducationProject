@@ -54,12 +54,12 @@ namespace EducationProject.Controllers
         }
 
         // PUT: api/goods
-        [HttpPut]
-        public async Task<IActionResult> Update([FromBody] UpdateGoodDTO goodDTO)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(int id, [FromBody] UpdateGoodDTO goodDTO)
         {
             var good = new Good
             {
-                Id = goodDTO.Id,
+                Id = id,                          
                 Name = goodDTO.Name,
                 Price = goodDTO.Price,
                 Description = goodDTO.Description,
